@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <style>
+        input.red {
+            border-color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+<p id="error"></p>
+
+<form id ="myForm" name="myForm">
+    <label for="name">Név:</label><br>
+    <input type="text" id="name" name="name" required><br>
+    <label for="neptun">Neptun-kód:</label><br>
+    <input type="text" id="neptun" name="neptun" required maxlength="6" size="6"><br>
+    <label for="szulido">Születési idő:</label><br>
+    <input type="date" id="szulido" name="szulido" required><br>
+    <label for="szulhely">Születési hely:</label><br>
+    <input type="text" id="szulhely" name="szulhely" required><br>
+    <label for="anyja">Anyja neve:</label><br>
+    <input type="text" id="anyja" name="anyja" required><br>
+    <label for="lakcim">Lakcím:</label><br>
+    <input type="text" id="lakcim" name="lakcim" required><br>
+    <label for="eletkor">Életkor:</label><br>
+    <input type="number" id="eletkor" name="eletkor" required min="18" max="90"><br>
+    <label for="iskola">Iskola:</label><br>
+    <input type="text" id="iskola" name="iskola" required><br>
+    <label for="szin">Kedvenc szín:</label><br>
+    <input type="color" id="szin" name="szin" required><br>
+    <!-- <input type="submit"> -->
+</form>
+
+<button type="button" onclick="validateForm()">Ellenőrzés</button>
+
+<script>
+function validateForm() {
+    var elements = document.getElementById("myForm").elements;
+    var text = "<b>A következő mező(k) kitöltése kötelező:</b><br>";
+
+    for (var i = 0, element; element = elements[i++];) {
+        element.classList.remove('red');
+        if (element.required == true && element.value === "") {
+            text = text + "[" + element.labels[0].innerHTML.substring(0, element.labels[0].innerHTML.length-1) + "]" + " ";
+            element.classList.add('red');
+        }
+    }
+
+    document.getElementById("error").innerHTML = text;
+}
+</script>
+
+</body>
+
+</html>
